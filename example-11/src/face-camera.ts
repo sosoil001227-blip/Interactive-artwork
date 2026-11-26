@@ -1,5 +1,6 @@
 import { FaceWindow, faceMask } from './face-window.ts'
 import type { FaceBox } from './face-window'
+import { publicAssetURL } from '../../shared/public-asset.ts'
 
 /** Optional 8 fps worker. Failure keeps the room hidden and never blocks hand input. */
 export class FaceCamera {
@@ -38,7 +39,7 @@ export class FaceCamera {
       }
       worker.onerror = event => { event.preventDefault(); this.close() }
       worker.onmessageerror = () => this.close()
-      worker.postMessage({ type: 'init', wasm: new URL('/mediapipe/', location.href).href,
+      worker.postMessage({ type: 'init', wasm: publicAssetURL('mediapipe/'),
         model: new URL('./assets/blaze-face-short-range.tflite', import.meta.url).href })
       this.timeout = window.setTimeout(() => this.close(), 30000)
     } catch { this.close() }

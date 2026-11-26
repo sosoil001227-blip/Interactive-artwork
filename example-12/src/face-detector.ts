@@ -1,4 +1,5 @@
 import type { Landmark } from './geometry.ts'
+import { publicAssetURL } from '../../shared/public-asset.ts'
 type Response={type:string;points?:Landmark[];timestamp?:number;message?:string}
 export class FaceDetector {
   private worker:Worker
@@ -26,7 +27,7 @@ export class FaceDetector {
     signal.addEventListener('abort',cancel,{once:true})
     try{
       if(signal.aborted)throw new Error('초기화 취소')
-      await tracker.request({type:'init',wasm:new URL('/mediapipe/',location.href).href,model:new URL('./assets/face_landmarker.task',import.meta.url).href},[],90000)
+      await tracker.request({type:'init',wasm:publicAssetURL('mediapipe/'),model:new URL('./assets/face_landmarker.task',import.meta.url).href},[],90000)
       return tracker
     }catch(reason){tracker.close();throw reason}
     finally{signal.removeEventListener('abort',cancel)}

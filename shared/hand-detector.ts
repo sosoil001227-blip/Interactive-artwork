@@ -1,5 +1,6 @@
 import type { HandLandmarker, HandLandmarkerResult } from '@mediapipe/tasks-vision'
 import type { HandRequest, HandResponse } from './hand-protocol'
+import { publicAssetURL } from './public-asset.ts'
 
 type Pending = { resolve: (message: HandResponse) => void; reject: (reason: Error) => void; timer: ReturnType<typeof setTimeout> }
 
@@ -10,7 +11,7 @@ export class HandDetector {
   private serial = 0
   private closed = false
   private busy = false
-  private baseURL = new URL('/', location.href).href
+  private baseURL = publicAssetURL('')
 
   static async create(signal?: AbortSignal) {
     const detector = new HandDetector()

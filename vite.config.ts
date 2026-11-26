@@ -1,9 +1,25 @@
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import { fileURLToPath } from 'node:url'
 import { readDevHttps } from './scripts/dev-https.mjs'
 
+const pagesBasePath = process.env.GITHUB_PAGES_BASE_PATH?.replace(/\/$/, '') ?? ''
+
+function exampleNavigation(): Plugin {
+  let base: string
+  return {
+    name: 'example-navigation',
+    apply: 'build',
+    configResolved(config) { base = config.base },
+    transformIndexHtml(html) {
+      return html.replace(/\bhref="\/(example-\d+\/)"/g, (_, route) => `href="${base}${route}"`)
+    },
+  }
+}
+
 export default defineConfig(({ command, isPreview }) => ({
   root: fileURLToPath(new URL('.', import.meta.url)),
+  base: command === 'build' ? `${pagesBasePath}/` : '/',
+  plugins: [exampleNavigation()],
   server: {
     host: '::',
     port: 5174,

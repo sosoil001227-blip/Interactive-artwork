@@ -191,7 +191,7 @@ function App() {
         {import.meta.env.VITE_EXAMPLE_HUB === true && (
           <nav className="example-menu" aria-label="예제 선택">
             {examples.map(([number, name]) => (
-              <a key={number} href={`/example-${number}/`} aria-label={`${number} ${name}`} aria-current={number === 13 ? 'page' : undefined}>
+              <a key={number} href={`${import.meta.env.BASE_URL}example-${number}/`} aria-label={`${number} ${name}`} aria-current={number === 13 ? 'page' : undefined}>
                 {String(number).padStart(2, '0')} <span>{name}</span>
               </a>
             ))}
