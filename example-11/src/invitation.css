@@ -1,0 +1,77 @@
+/* Old theatre lettering, kept as real local display type. */
+#title { font:400 clamp(30px,4.5vw,61px)/1.14 'Rye Local',Georgia,serif; letter-spacing:.6px; color:#edce91; }
+
+/* A translucent red film strip, with real cut-out sprocket holes. */
+.start-button.film-button { position:relative; isolation:isolate; overflow:visible; display:inline-flex; min-width:300px; min-height:90px; max-width:100%; padding:23px 22px 23px 35px; gap:24px; border:0; border-radius:3px; color:#f2d3a0; background:none; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; transform:rotate(-2deg); filter:drop-shadow(0 8px 6px #190b1099); transition:transform .22s,filter .22s; }
+.film-strip { position:absolute; z-index:-1; inset:0; width:100% !important; height:100% !important; pointer-events:none; }
+.film-button .start-copy { gap:6px; }.film-button .start-ticket-label { color:#cda16a; font-size:7px; letter-spacing:2.7px; }
+.film-button #start-label { color:#f1d6a9; font:650 19px/1.25 SUIT,sans-serif; letter-spacing:2px; text-shadow:0 2px #180c0f; }
+.start-button.film-button .ticket-medallion { flex-basis:40px; width:40px; height:40px; padding:0; border:0; border-radius:0; background:none; box-shadow:none; color:#e6b775; }
+.start-button.film-button .ticket-medallion svg { width:29px; height:29px; }
+.start-button.film-button:hover { background:none; box-shadow:none; transform:translateY(-2px) rotate(-1deg) scale(1.025); filter:brightness(1.13) drop-shadow(0 10px 8px #190b1080); }
+.start-button.film-button:active { transform:translateY(2px) rotate(-1deg) scale(.98); }
+.start-button.film-button:focus-visible { outline:2px solid #e7bd7a; outline-offset:7px; }
+.start-button.film-button:disabled { transform:rotate(-2deg); opacity:.7; }
+
+/* Brass-and-wine controls and a warm printed score belong to this stage. */
+.control-dock { padding:5px; gap:5px; border:1px solid #af8b505c; border-radius:10px; background:linear-gradient(#332222ed,#20191aed); box-shadow:inset 0 1px #d2ae6730,0 7px 16px #170a0e4d; }
+.dock-button.theatre-button { position:relative; min-height:42px; padding:0 13px; border:1px solid #b99a5d5c; border-radius:6px; color:#e3cc9f; background:linear-gradient(#5a3936b3,#352426d9); box-shadow:inset 0 1px #d5b47626,0 2px 3px #160b1226; font:11px SUIT,sans-serif; transition:background .2s,transform .2s; }
+.dock-button.theatre-button:hover { background:linear-gradient(#714b40,#49302f); transform:translateY(-1px); }
+.dock-button.theatre-button:active { transform:translateY(1px); }.dock-button.theatre-button:focus-visible { outline-color:#deb97a; }
+.dock-button.theatre-button[aria-pressed='false'] { color:#a59580; background:#2d2322; }
+.dock-button.theatre-button[aria-pressed='true'] { border-color:#c6a66e99; color:#f2d8a6; }
+.stop-button.theatre-button { background:linear-gradient(#69343a,#422329); color:#efc1a1; }
+.control-state,[aria-pressed='false'] .control-state { color:#d3ae70; }.hand-status.is-conducting { border-color:#d0a55c99; background:#623b2bb3; }
+.voice-volume { color:#dcc49e; }.voice-volume meter { accent-color:#bd9455; }.voice-volume meter::-webkit-meter-optimum-value { background:linear-gradient(90deg,#83513d,#ddbc76); }.voice-volume meter::-moz-meter-bar { background:#c6a268; }
+.score-panel { right:clamp(24px,5vw,80px); width:267px; }
+.score-card.theatre-button { padding:17px; border:1px solid #bd985c; border-radius:5px; background:radial-gradient(ellipse at 0 100%,#bc935a30,transparent 60%),#eddfc3f0; color:#694b34; box-shadow:0 9px 25px #160b123d,inset 0 0 0 4px #8c6b3c24,inset 0 0 0 5px #d6bc8799; backdrop-filter:none; }
+.score-card.theatre-button:hover { border-color:#ead0a0; background-color:#f4e6ca; }
+.score-heading { color:#8a633b; font-family:Georgia,serif; letter-spacing:1px; }.score-heading svg { stroke:#86613f; }
+#note-name { color:#8c3137; }#frequency { color:#977958; }#syllable { color:#963d3a; }.score-footer,.clip-progress { color:#9d7e56; }.clip-progress progress { accent-color:#a3403e; }
+
+/* Never reveal an unmasked room, including model startup, failure or face loss. */
+body.is-performing #camera { opacity:0; mask-image:radial-gradient(transparent,transparent); -webkit-mask-image:radial-gradient(transparent,transparent); transition:opacity .18s; filter:sepia(.3) saturate(.5); }
+body.is-performing #camera.face-visible { opacity:.26; }
+
+/* A cream invitation emerges from a red envelope on an antique silver tray. */
+.viewing-guide { padding:18px; background:radial-gradient(ellipse at 50% 40%,#403128b8,#0e0e11e8); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
+.invitation-scene { position:relative; width:min(650px,100%); padding:24px 43px 74px; }
+.invitation-tray { position:absolute; z-index:0; inset:-12px -30px -6px; border:0; background:url('./assets/silver-invitation-v8.png') center/100% 100% no-repeat; filter:drop-shadow(0 12px 18px #06070999); transform:rotate(-3deg); }
+.envelope-back { position:absolute; inset:16% 8px 2px; border:1px solid #9c4b42; clip-path:polygon(0 23%,50% 0,100% 23%,100% 100%,0 100%); background:linear-gradient(115deg,#6c1427,#922739 55%,#530f22); box-shadow:inset 0 0 45px #260a12b3; }
+.leaflet.invitation-card { width:100%; max-height:calc(100svh - 150px); overflow:auto; border:1px solid #bbaa87; border-radius:1px; background:radial-gradient(ellipse at 0 100%,#b8a17a21,transparent 70%),#e9e3d2; box-shadow:0 6px 25px #180d1080; transform:rotate(-1.1deg); animation:invitation-arrive .6s ease-out both; }
+.invitation-card::before { inset:9px; border:1px solid #99876566; box-shadow:none; }
+.invitation-card .leaflet-close { top:18px; right:18px; color:#6e5341; border-color:#9f8a6159; background:#bbaa7c21; }
+.invitation-card .programme-header { margin:0; padding:23px 29px 10px; border:0; background:none; box-shadow:none; }
+.invitation-card .programme-edition { margin-right:25px; color:#8e7a5e; font-size:6px; letter-spacing:1.6px; }
+.invitation-salutation { margin:15px 0 7px; color:#4d3a2e; font:400 43px/1 'Theatre Script',cursive; }
+.invitation-card .programme-title { margin:10px 0 0; color:#6c2c32; font:400 24px/1.3 'Rye Local',Georgia,serif; letter-spacing:.5px; text-shadow:none; }
+.invitation-card .programme-ornament { width:155px; margin:8px auto; stroke:#8c7650; }
+.invitation-card #guide-title { color:#796248; font-size:17px; letter-spacing:1px; }
+.invitation-card .leaflet-content { padding:9px 33px 28px; }
+.invitation-card .programme-song { font-size:16px; color:#7f684b; }.invitation-card .programme-song span { font-size:6px; }
+.invitation-card .leaflet-intro { margin:13px 0 15px; font-size:11px; color:#85725d; }
+.invitation-card .leaflet-directions li { padding:13px 0; gap:16px; }.invitation-card .direction-number { border-color:#a8987899; color:#82674d; }
+.invitation-card .direction-label { color:#8b7657; font-size:8px; }.invitation-card .leaflet-directions h3 { font-size:12px; color:#614a37; }.invitation-card .leaflet-directions p { font-size:11px; color:#89775f; }
+.invitation-card .leaflet-note { margin:14px 0; font-size:8px; }.invitation-card #guide-enter { border-radius:4px; min-width:120px; font-size:11px; }
+.envelope-front { position:absolute; z-index:2; inset:auto 0 0; height:104px; pointer-events:none; filter:drop-shadow(0 6px 6px #130a104d); }
+.envelope-front > span { position:absolute; inset:0; }
+.envelope-left { clip-path:polygon(0 0,53% 83%,0 100%); background:linear-gradient(125deg,#9e293e,#6e142b); }
+.envelope-right { clip-path:polygon(100% 0,47% 83%,100% 100%); background:linear-gradient(235deg,#942339,#5f1026); }
+.envelope-pocket { clip-path:polygon(0 100%,0 75%,50% 38%,100% 75%,100% 100%); border-bottom:1px solid #a34a48; background:linear-gradient(#a12e42,#75182e); }
+.envelope-front .envelope-seal { inset:auto auto 13px 50%; width:29px; height:29px; display:grid; place-items:center; transform:translateX(-50%); border:2px ridge #a87e44; border-radius:50%; background:#7d532e; color:#d1ad72; font:14px Georgia,serif; box-shadow:0 2px 4px #250b16a6; }
+@keyframes invitation-arrive { from { transform:translateY(17px) rotate(-2deg); } to { transform:rotate(-1.1deg); } }
+@media(max-width:650px) {
+  #title { font-size:clamp(22px,6.7vw,35px); letter-spacing:.1px; }
+  .start-button.film-button { min-width:270px; min-height:82px; padding:21px 19px 21px 30px; gap:20px; }.film-button #start-label { font-size:17px; }
+  .control-dock { gap:4px; padding:4px; border-radius:8px; }.dock-button.theatre-button { min-height:38px; padding:0 9px; font-size:9px; }
+  .score-panel { right:15px; top:137px; width:169px; }.score-card.theatre-button { padding:12px; }.score-heading { font-size:5.5px; letter-spacing:.3px; }
+  .invitation-scene { padding:16px 18px 61px; }.invitation-tray { inset:0 -10px -2px; }.envelope-back { inset:12% 0 1px; }
+  .leaflet.invitation-card { max-height:calc(100svh - 110px); }.invitation-card .programme-header { padding:18px 18px 7px; }.invitation-card .programme-edition { font-size:5px; letter-spacing:1px; }
+  .invitation-salutation { font-size:35px; margin:13px 0 7px; }.invitation-card .programme-title { font-size:20px; }.invitation-card #guide-title { font-size:14px; }
+  .invitation-card .leaflet-content { padding:8px 20px 27px; }.invitation-card .programme-song { font-size:13px; }.invitation-card .leaflet-intro { font-size:10px; margin:11px 0; }
+  .invitation-card .leaflet-directions li { gap:11px; padding:12px 0; }.invitation-card .leaflet-directions h3 { font-size:10px; }.invitation-card .leaflet-directions p { font-size:10px; }.invitation-card .direction-label { font-size:7px; }
+  .invitation-card .leaflet-actions { gap:8px; }.invitation-card #guide-enter { min-width:94px; padding-inline:10px; font-size:10px; }
+  .envelope-front { height:88px; }.envelope-front .envelope-seal { bottom:10px; width:24px; height:24px; font-size:12px; }
+}
+@media(max-height:600px) { .viewing-guide { padding:8px; }.invitation-scene { padding-block:8px 42px; width:min(600px,100%); }.leaflet.invitation-card { max-height:calc(100svh - 68px); }.envelope-front { height:66px; }.start-button.film-button { min-height:70px; padding-block:18px; } }
+@media(prefers-reduced-motion:reduce) { .leaflet.invitation-card { animation:none; }.start-button.film-button { transition:none; } }

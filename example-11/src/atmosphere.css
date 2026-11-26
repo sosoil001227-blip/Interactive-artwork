@@ -1,0 +1,129 @@
+@font-face { font-family:'Theatre Bodoni'; src:url('./assets/BodoniModa-Italic-Latin.woff2') format('woff2'); font-style:italic; font-weight:600; font-display:swap; }
+@font-face { font-family:'Theatre Script'; src:url('./assets/GreatVibes-Latin.woff2') format('woff2'); font-style:normal; font-weight:400; font-display:swap; }
+
+/* A photographic carved proscenium and layered crimson drapes frame the live stage. */
+body { background:#241a13; }
+.stage-backwall { position:fixed; inset:0; display:flex; padding:16vh 15% 12vh; gap:2%; background:radial-gradient(ellipse at 50% 32%,#b28b5366,transparent 60%),linear-gradient(90deg,#241e16,#756045 48%,#241e16); pointer-events:none; }
+.stage-backwall span { position:relative; flex:1; border:2px ridge #b3925d69; background:linear-gradient(90deg,#22180d26,#cab08610 50%,#22180d30); box-shadow:inset 0 0 20px #1d171533,3px 0 9px #120e0b4d; }
+.stage-backwall span::before,.stage-backwall span::after { content:'❧'; position:absolute; left:0; right:0; top:8%; text-align:center; color:#342a1b80; font:38px Georgia,serif; text-shadow:0 1px #c3a57340; }
+.stage-backwall span::after { top:auto; bottom:8%; transform:rotate(180deg); }
+.stage-wash { background:radial-gradient(ellipse at 50% 44%,#e6ae5912,transparent 42%,#100c0db8),linear-gradient(#100c0d66,transparent 40%,#27120f44); }
+.curtain { bottom:9%; }
+.curtain::before { background-color:#651824; filter:brightness(1.08); }
+.curtain::after { background:linear-gradient(#230d197a,#771d1f0c 40%,#2f10174d); }
+.curtain-spot { background:radial-gradient(ellipse 42% 48% at 50% 48%,#f4b47c16,transparent 70%,#100b114d); }
+.pelmet,.side-drape { display:none; }
+.proscenium { position:fixed; inset:0; z-index:4; pointer-events:none; background:url('./assets/ornate-theatre-v6.png') center/100% 100% no-repeat; }
+.theatre-floor { height:20%; background:#4a2c20; }
+.theatre-floor::before { inset:-20% -12% -5%; transform:perspective(550px) rotateX(43deg); transform-origin:bottom; background:repeating-linear-gradient(0deg,transparent 0 56px,#281b167a 57px 58px),linear-gradient(#b59b7b1a,#33231d38),url('./assets/walnut-planks-v5.jpg') center/700px auto; }
+.theatre-floor::after { background:radial-gradient(ellipse at 50% 3%,#ebc99d32,transparent 69%),linear-gradient(#190e1166,transparent 35%,#1713114d); }
+
+/* Gilded mahogany cartouche: the same materials as the surrounding theatre. */
+.sign-drop { top:30%; width:min(760px,calc(100% - 80px)); filter:drop-shadow(0 17px 18px #170b0e80); }
+.hanging-sign { display:flex; align-items:center; justify-content:center; aspect-ratio:3/1; padding:60px 62px 20px; border:0; border-radius:0; background:url('./assets/gilded-plaque-v7.png') center/100% 100% no-repeat; box-shadow:none; }
+.hanging-sign::before,.hanging-sign::after,.sign-flourish,.sign-rosette,.board-pin { display:none; }
+#title { font:600 italic clamp(36px,5.5vw,74px)/1.1 'Theatre Bodoni','Baskerville',Georgia,serif; letter-spacing:-1.8px; color:#edce91; text-shadow:0 1px #ffe6b275,0 2px #6b431f,1px 4px 6px #17090bd9; }
+.rope { width:6px; height:calc(100vh + 44px); filter:none; background:radial-gradient(ellipse 2px 4px at 50% 50%,transparent 45%,#bb945d 52% 69%,#372519 73% 84%,transparent 90%) center/6px 10px repeat-y; box-shadow:1px 0 2px #170e0c66; }
+.rope-left { left:22%; }.rope-right { right:22%; }
+.rope::before,.rope::after { bottom:-4px; left:-2px; width:10px; height:13px; border:2px solid #a57f43; border-radius:50%; background:#332014; box-shadow:inset 1px 0 #efcb8073,1px 2px 3px #180a0c; transform:none; }
+.rope::after { bottom:-3px; left:1px; width:4px; height:12px; border:0; border-radius:2px; background:linear-gradient(90deg,#72502c,#d9b875,#624220); box-shadow:none; transform:rotate(18deg); }
+.opening-action { bottom:23%; }
+/* A small wine-red admission ticket replaces the pastel candy surface. */
+.start-button.jelly-button { min-width:260px; min-height:74px; max-width:100%; padding:12px 21px 12px 29px; gap:25px; border:1px solid #c5a36a; border-radius:9px; color:#ead1a1; background:radial-gradient(ellipse at 50% 0,#b5795433,transparent 75%),linear-gradient(165deg,#773541,#48202a); box-shadow:inset 0 1px 1px #e0bb7873,inset 0 -4px 7px #2b111852,0 4px 0 #32161c,0 12px 25px #160a103d; backdrop-filter:none; -webkit-backdrop-filter:none; }
+.start-button.jelly-button::before { inset:5px; height:auto; border:1px solid #d3ac6859; border-radius:4px; background:none; filter:none; }
+.start-button.jelly-button::after { inset:2px; border:1px solid #e8c98d1f; border-radius:6px; box-shadow:none; }
+.start-copy { display:flex; flex-direction:column; align-items:center; flex:1; gap:5px; }
+.start-ticket-label { color:#c6a574; font:7px/1 Georgia,serif; letter-spacing:3px; }
+#start-label { flex:0; color:#f0d9b0; font:650 18px/1.3 SUIT,sans-serif; letter-spacing:1.5px; text-shadow:0 1px 2px #2c1219; }
+.start-button .ticket-medallion { flex:0 0 44px; width:44px; height:43px; padding-left:17px; border:0; border-left:1px dashed #c3a16a80; border-radius:0; color:#e5c48b; background:none; box-shadow:none; }
+.start-button .ticket-medallion svg { width:27px; height:27px; stroke-width:1; }
+.start-button .ticket-play { fill:currentColor; stroke:none; }
+.start-button.jelly-button:hover { transform:translateY(-2px) scale(1.02); filter:brightness(1.08); background:radial-gradient(ellipse at 50% 0,#bc936040,transparent 75%),linear-gradient(165deg,#87414c,#592632); box-shadow:inset 0 1px 1px #f1cc8673,inset 0 -4px 7px #2b111852,0 5px 0 #32161c,0 15px 29px #160a104d; }
+.start-button.jelly-button:active { transform:translateY(2px) scale(.99,.97); box-shadow:inset 0 1px 3px #2c111b59,0 1px 0 #32161c,0 5px 14px #160a104d; }
+.start-button.jelly-button:focus-visible { outline:2px solid #eac88d; outline-offset:6px; }
+.start-button.jelly-button:disabled { transform:none; }
+/* Restore keyboard focus immediately when returning from the end card. */
+body:not(.is-performing):not(.is-closing):not(.is-ending) .opening-action { transition:opacity .35s; }
+
+/* An antique theatre programme, with a wine-red heading and warm printed stock. */
+.viewing-guide { padding:24px; background:#120c10c4; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); color-scheme:light; }
+.leaflet { position:relative; width:min(600px,100%); max-height:calc(100svh - 48px); overflow:auto; border:1px solid #a48556; border-radius:4px; color:#57422e; background:radial-gradient(ellipse at 0 50%,#ac783b1a,transparent 35%),radial-gradient(ellipse at 100% 50%,#ac783b1a,transparent 35%),#f0e4c9; box-shadow:0 26px 80px #08040cb3,inset 0 0 35px #9b6e2a21; scrollbar-width:thin; scrollbar-color:#ad9166 #eaddc1; }
+.leaflet::before { content:''; position:absolute; inset:8px; z-index:0; pointer-events:none; border:1px solid #9a793e80; box-shadow:0 0 0 3px #d9bd8629; }
+.leaflet-close { position:absolute; top:17px; right:17px; z-index:2; display:grid; place-items:center; width:30px; height:30px; padding:6px; border:1px solid #d4b57a6b; border-radius:50%; color:#e4cfa4; background:#3212194d; transition:background .2s; }
+.leaflet-close:hover { background:#c49f5a36; }.leaflet-close svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.2; }
+.programme-header { position:relative; margin:13px 13px 0; padding:20px 28px 18px; border:1px solid #c8a86d80; text-align:center; color:#e5c791; background:radial-gradient(ellipse at 50% 15%,#9a4a382b,transparent 70%),linear-gradient(110deg,#401920,#59262a 50%,#401920); box-shadow:inset 0 0 22px #21101959,0 3px 8px #714d2e21; }
+.programme-edition { display:flex; justify-content:space-between; margin:0 20px 10px 0; font:7px/1.5 Georgia,serif; letter-spacing:2.1px; color:#c3a56b; }
+.programme-edition span { letter-spacing:1px; }
+.programme-title { margin:0; color:#f1d59f; font:600 italic 48px/1.2 'Theatre Bodoni',Georgia,serif; letter-spacing:-1.7px; text-shadow:0 2px 2px #1e121033; }
+.programme-ornament { display:block; width:185px; height:19px; margin:8px auto; fill:none; stroke:#bda16d; stroke-width:.8; stroke-linecap:round; }
+#guide-title { margin:0; color:#ead4af; font:500 20px/1.5 'AppleMyungjo','Batang',Georgia,serif; letter-spacing:2px; }
+.leaflet-content { position:relative; padding:20px 39px 28px; }
+.programme-song { margin:0; text-align:center; color:#80613d; font:italic 18px/1.35 Georgia,serif; }
+.programme-song span { display:block; margin-top:7px; font:7px/1.5 Georgia,serif; letter-spacing:2px; color:#9a7c53; }
+.leaflet-intro { margin:16px 0 17px; text-align:center; color:#826e54; font:12px/1.8 SUIT,sans-serif; }
+.leaflet-directions { list-style:none; margin:0; padding:0; border-top:1px solid #a98c554d; }
+.leaflet-directions li { display:flex; align-items:center; gap:18px; padding:16px 0; border-bottom:1px solid #a98c554d; }
+.direction-number { display:grid; place-items:center; flex:0 0 34px; height:34px; border:1px solid #a98a50a6; border-radius:50%; outline:1px solid #b69d643d; outline-offset:3px; color:#91713d; font:italic 17px Georgia,serif; }
+.direction-label { color:#8e683b; font:9px/1.4 Georgia,SUIT,serif; letter-spacing:.9px; }
+.leaflet-directions h3 { margin:6px 0 5px; color:#5c402b; font:650 13px/1.5 SUIT,sans-serif; }
+.leaflet-directions p { margin:0; color:#8a7355; font:12px/1.75 SUIT,sans-serif; }
+.leaflet-note { margin:16px 0 18px; text-align:center; color:#9a835f; font:9px/1.9 SUIT,sans-serif; }
+.leaflet-note span { display:inline-grid; place-items:center; width:12px; height:12px; border:1px solid #b29b71; border-radius:50%; font-size:8px; }
+.leaflet-actions { display:flex; justify-content:space-between; align-items:center; gap:15px; padding-top:2px; }
+.leaflet-actions > span { color:#8e724a; font:10px/1.8 SUIT,sans-serif; }.leaflet-actions small { font-size:8px; color:#a88e68; }
+#guide-enter { min-height:44px; min-width:126px; padding:12px 19px; border:1px solid #b9955c; border-radius:999px; color:#f3ddaf; background:linear-gradient(#70343a,#4e232b); box-shadow:inset 0 1px #d5b27866,0 3px 0 #3b1d2459,0 4px 9px #55312429; font:600 12px/1.4 SUIT,sans-serif; transition:background .2s,transform .2s; }
+#guide-enter:hover { background:linear-gradient(#83414a,#653039); transform:translateY(-1px); }#guide-enter:active { transform:translateY(2px); }
+
+/* Curtain call: a lace heart, then the silver tones of an old film's end card. */
+body.is-ending .sign-drop,body.is-ending .opening-action { opacity:0; visibility:hidden; pointer-events:none; }
+body.is-ending .side-drape { opacity:0; transition-delay:0s; }
+body.is-ending #camera { opacity:0; }
+.ending-screen { position:fixed; inset:0; z-index:12; display:grid; place-items:center; padding:90px 20px 7vh; pointer-events:none; }
+.ending-card { width:min(600px,100%); text-align:center; color:#f6e9d0; pointer-events:auto; animation:ending-appear .8s ease-out both; }
+.ending-kicker { margin:0 0 -7px; font:9px/1.5 Georgia,serif; letter-spacing:3.4px; color:#e1cba8; }
+.ending-heart { position:relative; width:100%; aspect-ratio:600/530; filter:drop-shadow(0 5px 15px #1c101947); }
+.ending-heart > svg { position:absolute; inset:0; width:100%; height:100%; }
+#ending-title { position:absolute; inset:31% 0 auto; margin:0; font:400 clamp(70px,9vw,114px)/1.4 'Theatre Script',cursive; color:#fff5e5; text-shadow:1px 3px #4b2b25,2px 6px 4px #29171a66; transform:rotate(-8deg); }
+.ending-signature { position:absolute; top:63%; left:0; right:0; color:#e2ccb3; font:8px Georgia,serif; letter-spacing:2.2px; }
+.ending-thanks { margin:-9px 0 21px; font:11px/1.7 SUIT,sans-serif; color:#e0cbbd; }
+.ending-actions { display:flex; justify-content:center; gap:12px; }
+.ending-actions button { min-width:108px; min-height:40px; padding:10px 15px; border:1px solid #d3bfac66; border-radius:999px; background:#e4d5bd16; color:#ebdecb; font:11px SUIT,sans-serif; transition:background .2s; }
+.ending-actions button:hover { background:#e4d5bd36; }.ending-actions button span { margin-left:13px; }
+body.is-ending .stage-backwall,body.is-ending .curtains,body.is-ending .theatre-floor,body.is-ending .proscenium,body.is-ending .stage-apron,body.is-ending .stage-wash,body.is-ending .ending-screen { animation:film-to-silver 2.8s .8s ease-in-out both; }
+@keyframes film-to-silver { from { filter:grayscale(0); } to { filter:grayscale(1); } }
+@keyframes ending-appear { from { opacity:0; transform:translateY(12px) scale(.96); } to { opacity:1; transform:none; } }
+@media(max-width:650px) {
+  .sign-drop { top:32%; width:calc(100% - 30px); }.hanging-sign { padding:30px 28px 10px; }
+  #title { font-size:clamp(26px,8.2vw,45px); letter-spacing:-.9px; }
+  .rope { height:calc(100vh + 23px); width:5px; background-size:5px 8px; }
+  .start-button.jelly-button { min-width:236px; min-height:68px; padding:11px 20px 11px 26px; gap:22px; border-radius:8px; }
+  #start-label { font-size:17px; letter-spacing:1.2px; }.start-ticket-label { font-size:6px; }
+  .stage-backwall { padding-inline:13%; gap:3%; }.stage-backwall span:nth-child(even) { display:none; }
+  .stage-backwall span::before,.stage-backwall span::after { font-size:24px; }
+  .viewing-guide { padding:14px; }.leaflet { max-height:calc(100svh - 28px); }
+  .leaflet-close { top:17px; right:17px; width:27px; height:27px; }
+  .programme-header { margin:11px 11px 0; padding:21px 14px 15px; }.programme-edition { font-size:6px; letter-spacing:1.1px; margin-right:21px; }
+  .programme-edition span { letter-spacing:.5px; }.programme-title { font-size:39px; }.programme-ornament { width:150px; height:15px; margin:7px auto; }
+  #guide-title { font-size:19px; }.leaflet-content { padding:18px 24px 25px; }.programme-song { font-size:15px; }.programme-song span { font-size:6px; letter-spacing:1.5px; }
+  .leaflet-intro { font-size:10px; margin:13px 0 15px; }.leaflet-directions li { gap:13px; padding:14px 0; }
+  .direction-number { flex-basis:27px; height:27px; font-size:15px; }.direction-label { font-size:7px; letter-spacing:.5px; }
+  .leaflet-directions h3 { font-size:11px; }.leaflet-directions p { font-size:10px; line-height:1.8; }.desktop-break { display:none; }
+  .leaflet-note { font-size:8px; margin:15px 0; }.leaflet-actions > span { font-size:9px; }.leaflet-actions small { font-size:7px; }
+  #guide-enter { min-width:103px; min-height:43px; padding:11px 13px; font-size:11px; }
+  .ending-screen { padding:110px 16px 7vh; }.ending-kicker { font-size:6px; letter-spacing:2px; }#ending-title { font-size:19vw; }
+  .ending-signature { font-size:6px; letter-spacing:1.3px; }.ending-thanks { margin:0 0 19px; font-size:9px; }.ending-actions button { font-size:10px; }
+}
+@media(max-height:600px) and (min-width:651px) {
+  .sign-drop { top:28%; width:min(530px,68vw); }.hanging-sign { padding:45px 44px 15px; }#title { font-size:51px; }
+  .opening-action { bottom:15%; }.start-button.jelly-button { min-height:60px; padding-block:9px; }
+}
+@media(max-height:600px) {
+  .ending-screen { padding:88px 15px 10px; }.ending-card { width:min(340px,100%); }.ending-kicker { display:none; }
+  .ending-heart { width:min(100%,calc(110svh - 190px)); min-width:150px; margin-inline:auto; }
+  #ending-title { font-size:clamp(40px,calc(26svh - 46px),80px); }
+  .ending-thanks { font-size:9px; margin:-6px 0 12px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .ending-card { animation:none; }
+  body.is-ending .stage-backwall,body.is-ending .curtains,body.is-ending .theatre-floor,body.is-ending .proscenium,body.is-ending .stage-apron,body.is-ending .stage-wash,body.is-ending .ending-screen { animation:none; filter:grayscale(1); }
+}

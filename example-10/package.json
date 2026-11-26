@@ -1,0 +1,11 @@
+{
+  "name": "jelly-black-hole",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm --prefix .. run dev:example10",
+    "build": "npm --prefix .. run build",
+    "test": "node --test tests/*.test.ts"
+  }
+}

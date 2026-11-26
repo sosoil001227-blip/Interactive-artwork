@@ -1,0 +1,51 @@
+.example-switcher {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid #f1eee22b;
+  border-radius: 30px;
+  background: #111c206e;
+  backdrop-filter: blur(18px);
+  font-family: Geist, SUIT, sans-serif;
+}
+.example-switcher a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid transparent;
+  border-radius: 24px;
+  color: #e5eee6a6;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background .2s, color .2s;
+}
+.example-switcher a > span { font-size: 9px; opacity: .6; font-variant-numeric: tabular-nums; }
+.example-switcher a:hover { color: #fff; background: #ffffff12; }
+.example-switcher a[aria-current='page'] { background: #e3f5e9; color: #183b36; border-color: #f5fff34d; }
+body[data-example='9'] .example-switcher { background: #0b1c12b3; border-color: #bad48b38; }
+body[data-example='9'] .example-switcher a[aria-current='page'] { background: var(--magic-accent, #d8f488); color: var(--magic-ink, #172714); border-color: #e9ffc24d; }
+@media (max-width: 1200px) {
+  .topbar { flex-wrap: wrap; row-gap: 17px; }
+  .example-switcher { position: static; transform: none; order: 3; flex-basis: 100%; justify-content: center; width: max-content; max-width: 460px; min-width: 0; margin: 0 auto; }
+  .example-switcher a { padding: 8px 17px; font-size: 11px; }
+  body[data-example='9'] .topbar { flex-wrap: wrap; justify-content: flex-end; }
+  body[data-example='9'] .topbar .example-switcher { order: 3; flex-basis: 100%; width: max-content; max-width: 460px; margin: 0 auto; }
+  body:not([data-example='11']) .topbar { display: grid; grid-template-columns: 1fr auto; }
+  body:not([data-example='11']) .topbar > .archive-link { grid-column: 2; grid-row: 1; }
+  body:not([data-example='11']) .topbar .example-switcher { grid-column: 1 / -1; grid-row: 2; justify-self: center; width: 100%; max-width: 640px; }
+}
+@media (max-width: 720px) {
+  body:not([data-example='11']) .topbar .example-switcher { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 460px; }
+  body:not([data-example='11']) .topbar .example-switcher a { justify-content: center; padding: 8px; gap: 5px; font-size: 10px; }
+}
+@media (max-width: 480px) {
+  body[data-example] .topbar .example-switcher a { padding: 8px; gap: 4px; font-size: 9px; }
+  body[data-example] .topbar .example-switcher a > span { font-size: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .example-switcher a { transition: none; } }

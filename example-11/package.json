@@ -1,0 +1,12 @@
+{
+  "name": "puppet-show",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm --prefix .. run dev:example11",
+    "build": "npm --prefix .. run build",
+    "test": "node --test tests/*.test.ts",
+    "build:face-worker": "node scripts/build-face-worker.mjs"
+  }
+}

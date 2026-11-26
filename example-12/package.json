@@ -1,0 +1,12 @@
+{
+  "name": "rubber-human",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm --prefix .. run dev:example12",
+    "build": "npm --prefix .. run build",
+    "build:face-worker": "node scripts/build-face-worker.mjs",
+    "test": "node --test tests/*.test.ts"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "watertouch",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm --prefix .. run dev:example8",
+    "build": "npm --prefix .. run build",
+    "test": "node --test tests/tracking.test.ts",
+    "preview": "npm --prefix .. run preview",
+    "postinstall": "node scripts/prepare-assets.mjs"
+  },
+  "dependencies": { "@mediapipe/tasks-vision": "1.2.3" },
+  "devDependencies": { "typescript": "~7.0.2", "vite": "^8.3.5" }
+}

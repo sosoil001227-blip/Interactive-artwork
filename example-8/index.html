@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#092c33" />
+    <meta name="description" content="양손 열 손가락으로 카메라 속 수면을 만지는 인터랙티브 실험, WaterTouch." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>WaterTouch — A little touch, a little tide.</title>
+  </head>
+  <body data-example="8">
+    <video id="camera" autoplay muted playsinline aria-hidden="true"></video>
+    <canvas id="water" aria-label="손끝의 움직임에 따라 물결로 굴절되는 카메라 화면"></canvas>
+    <canvas id="markers" aria-hidden="true"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="wordmark" href="/example-8/" aria-label="WaterTouch 홈">
+        <svg viewBox="0 0 24 30" aria-hidden="true"><path d="M12 2C9 7 3 13 3 19a9 9 0 0 0 18 0c0-6-6-12-9-17Z"/><path d="M7 19a5 5 0 0 0 5 5"/></svg>
+        WaterTouch<span class="edition">Nº 08</span>
+      </a>
+      <nav class="example-switcher" aria-label="예제 선택">
+        <a href="/example-8/" aria-current="page"><span>08</span> WaterTouch</a>
+        <a href="/example-9/"><span>09</span> magic</a>
+        <a href="/example-10/"><span>10</span> Jelly Black Hole</a>
+        <a href="/example-11/"><span>11</span> PUPPET SHOW</a>
+        <a href="/example-12/"><span>12</span> 고무 인간</a>
+        <a href="/example-13/"><span>13</span> 마스크</a>
+        <a href="/example-14/"><span>14</span> DDR MACHINE</a>
+      </nav>
+      <a id="archive-link" class="archive-link" href="http://localhost:5173/archive/works/">INDEX <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section id="welcome" class="welcome" aria-labelledby="welcome-title">
+        <span class="eyebrow">AN EXPERIMENT IN DIGITAL WATER</span>
+        <h1 id="welcome-title">A little touch,<br />a little <em>tide.</em></h1>
+        <p class="intro">손끝으로 만드는 작은 물결.<br />카메라 앞에서 두 손을 펼쳐 보세요.</p>
+        <button id="start" class="start-button" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="m16 10 5-3v10l-5-3"/></svg>
+          <span>카메라 켜기</span><span class="button-arrow" aria-hidden="true">↗</span>
+        </button>
+        <p id="start-note" class="privacy">카메라 영상은 이 기기 안에서만 처리돼요.</p>
+        <p id="error" class="error" role="alert" hidden></p>
+      </section>
+      <div id="live-hint" class="live-hint" hidden>손끝을 천천히 움직여 물결을 만들어 보세요.</div>
+    </main>
+
+    <footer class="bottom-bar">
+      <div class="readout">
+        <div class="status-row"><span id="status-dot" class="status-dot"></span><span id="status" role="status" aria-live="polite">카메라를 기다리고 있어요</span></div>
+        <div class="finger-readout"><span id="finger-count">00</span><span class="readout-total">/ 10</span><span class="readout-label">FINGERTIPS</span></div>
+        <div class="hand-readout"><span id="left-hand">왼손 —</span><span id="right-hand">오른손 —</span></div>
+      </div>
+      <div class="water-control">
+        <label for="strength">물결 세기 <output id="strength-value" for="strength">75%</output></label>
+        <input id="strength" type="range" min="15" max="150" value="75" aria-label="물결 세기" />
+        <div class="range-labels"><span>잔잔하게</span><span>선명하게</span></div>
+      </div>
+      <div class="actions">
+        <button id="show-markers" class="text-button" type="button" aria-pressed="true">손끝 표시 <span>ON</span></button>
+        <button id="reset" class="text-button" type="button">물결 지우기 <span aria-hidden="true">↺</span></button>
+        <button id="stop" class="text-button" type="button" hidden>카메라 끄기 <span aria-hidden="true">Ⅱ</span></button>
+      </div>
+    </footer>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+/* The camera is once again the softly lit rear wall of the theatre. */
+#camera { position:fixed; inset:0; width:100%; height:100%; object-fit:cover; transform:scaleX(-1); opacity:0; transition:opacity 1s; }
+body.is-performing #camera { opacity:.22; }
+#stage { z-index:3; }
+
+/* Soft candy surfaces, shared by action buttons, toggles and the score card. */
+.jelly-button {
+  --jelly-top:#fff5e1d6; --jelly-bottom:#e9d4b7bd; --jelly-glow:#fff0d34d;
+  position:relative; isolation:isolate; overflow:hidden; border:1px solid #fff6e4b0;
+  border-radius:22px; color:#42353c;
+  background:radial-gradient(ellipse at 45% 100%,var(--jelly-glow),transparent 70%),linear-gradient(170deg,var(--jelly-top),var(--jelly-bottom));
+  box-shadow:inset 0 2px 3px #fffdf3b3,inset 0 -5px 9px #8b6f7528,inset 2px 0 5px #fff8ed4d,0 5px 0 #8b73754d,0 8px 20px #1e121c29;
+  backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px);
+  transition:transform .22s cubic-bezier(.2,.8,.3,1.3),filter .22s,box-shadow .22s;
+}
+.jelly-button::before { content:''; pointer-events:none; position:absolute; z-index:0; left:9%; right:13%; top:5px; height:32%; border-radius:50% 45% 60% 40%; background:linear-gradient(#ffffff94,#fff9ef08); filter:blur(.5px); }
+.jelly-button::after { content:''; pointer-events:none; position:absolute; z-index:0; inset:3px; border:1px solid #fff9ed30; border-radius:inherit; box-shadow:inset 0 -2px 8px var(--jelly-glow); }
+.jelly-button > * { position:relative; z-index:1; }
+.jelly-button:hover { transform:scale(1.035,1.055); filter:brightness(1.065); background-color:transparent; }
+.jelly-button:active { transform:translateY(3px) scale(1.035,.91); }
+.jelly-button:focus-visible { outline:2px solid #e7d6ef; outline-offset:5px; }
+.jelly-button:disabled { cursor:wait; filter:saturate(.55); }
+.jelly-button.jelly-pop { animation:jelly-pop .48s cubic-bezier(.22,.75,.3,1) both; }
+@keyframes jelly-pop { 0% { transform:translateY(2px) scale(1.04,.91); } 38% { transform:translateY(-2px) scale(.97,1.07); } 68% { transform:scale(1.025,.98); } 100% { transform:scale(1); } }
+.start-button.jelly-button { --jelly-top:#fff1ddd9; --jelly-bottom:#efd6d2be; --jelly-glow:#ffd9dc5c; min-width:244px; min-height:72px; padding:10px 16px 10px 32px; gap:24px; border-radius:48% 46% 43% 47% / 50% 54% 48% 52%; }
+.start-button.jelly-button:hover { background:radial-gradient(ellipse at 45% 100%,#ffe0dd55,transparent 70%),linear-gradient(170deg,#fff4e4df,#f1d9d5c9); }
+#start-label { color:#4b3a40; font-size:20px; text-shadow:0 1px #fff8e69e; }
+.start-button .ticket-medallion { width:43px; height:43px; flex-basis:43px; border-radius:50%; background:linear-gradient(#edf4e574,#c7dfcf80); border:1px solid #fff7e65c; box-shadow:inset 0 1px 3px #fffaf06b,inset 0 -2px 6px #6a8c7540; color:#536c60; }
+.start-button .ticket-medallion svg { width:24px; height:24px; }
+.control-dock { display:inline-flex; flex-wrap:wrap; justify-content:center; gap:9px; max-width:100%; background:none; border:0; padding:0; backdrop-filter:none; }
+.dock-button.jelly-button { min-height:43px; padding:0 14px; gap:6px; font-size:10px; border-radius:16px; }
+.echo-button.jelly-button { --jelly-top:#f9e4edd9; --jelly-bottom:#d9bed4bd; --jelly-glow:#ffe5f34d; border:1px solid #fff0f3a1; }
+#sound.jelly-button { --jelly-top:#e6f6e8d9; --jelly-bottom:#bcd9cfbd; --jelly-glow:#e5fff04d; }
+#restart.jelly-button, #help.jelly-button { --jelly-top:#eee5f9d9; --jelly-bottom:#c9bfdcbd; --jelly-glow:#f1e5ff4d; }
+.dock-button[aria-pressed='false'] { color:#716271; filter:saturate(.55); }
+.control-state, [aria-pressed='false'] .control-state { color:#705573; }
+.stop-button.jelly-button { --jelly-top:#f4e5d9d9; --jelly-bottom:#d4bdb7bd; color:#6b4847; }
+.bottom-bar { width:min(940px,calc(100% - 34px)); }
+.performance-guide { margin-bottom:8px; }
+.performance-status { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:8px; margin:0 0 13px; font:9px SUIT,sans-serif; color:#d9d3c9; }
+.hand-status { display:inline-flex; align-items:center; gap:7px; padding:5px 9px; border:1px solid #ddd1bb2b; border-radius:99px; background:#2c211bc9; }
+.hand-status::before { content:''; width:4px; height:4px; border-radius:50%; background:#907a72; }
+.hand-status span { font-size:8px; color:#ad9f94; }.hand-status.is-tracked::before { background:#b9d7c5; }.hand-status.is-tracked span { color:#d4e5d4; }
+.hand-status.is-conducting { border-color:#e6b9d5a1; background:#5c3a4ab3; }
+.voice-volume { display:flex; align-items:center; gap:6px; margin-left:3px; font:8px monospace; color:#d6c4d8; }
+.voice-volume meter { width:57px; height:6px; accent-color:#c6e1d2; }
+.voice-volume meter::-webkit-meter-bar { background:#55423e; border:0; border-radius:10px; }
+.voice-volume meter::-webkit-meter-optimum-value { background:linear-gradient(90deg,#f0d2df,#c0dfcd); border-radius:10px; }
+.voice-volume meter::-moz-meter-bar { background:#c0dfcd; border-radius:10px; }
+#volume-value { min-width:26px; }
+.score-panel { width:254px; right:25px; top:30%; }
+.score-card.jelly-button { --jelly-top:#f3e9dfc2; --jelly-bottom:#d2bfd7b8; --jelly-glow:#efe0f629; width:100%; padding:16px; border-radius:24px; text-align:left; }
+.score-card.jelly-button:hover { transform:scale(1.015); }
+.score-heading { font-size:7px; letter-spacing:.8px; color:#655765; }
+.score-heading svg { flex:0 0 12px; stroke:#5a475a; }
+.pitch-readout { margin-top:12px; gap:9px; }
+#note-name { color:#574356; font-size:28px; }
+#frequency { color:#6f5b6b; font-size:8px; }
+#score { height:142px; }
+.score-footer { color:#756574; font-size:8px; }
+#syllable { color:#634454; font-size:12px; font-weight:650; }
+.clip-progress { display:flex; align-items:center; gap:7px; margin:5px 0 11px; font:8px monospace; color:#6c5968; }
+.clip-progress progress { flex:1; min-width:0; height:4px; accent-color:#976b8e; }
+.score-panel.is-expanded { width:min(540px,calc(100vw - 40px)); top:15%; }
+.score-panel.is-expanded #score { height:min(420px,58vh); }
+
+.viewing-guide { position:fixed; inset:0; z-index:30; display:grid; place-items:center; padding:24px; background:#241815b8; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
+@media(max-width:1100px) { .score-panel { right:18px; width:220px; top:29%; } }
+@media(max-width:650px) {
+  .score-panel { top:137px; right:10px; width:167px; }
+  .score-card.jelly-button { padding:11px; border-radius:18px; }
+  .score-heading { font-size:5.5px; letter-spacing:.3px; }
+  #note-name { font-size:23px; }#frequency { font-size:6.5px; }#score { height:92px; }
+  .pitch-readout { gap:5px; margin-top:9px; }
+  .score-footer { font-size:6.5px; }.score-panel.is-expanded { top:125px; right:10px; width:calc(100% - 20px); }
+  .score-panel.is-expanded #score { height:min(390px,55vh); }
+  .bottom-bar { width:calc(100% - 20px); bottom:max(12px,env(safe-area-inset-bottom)); }
+  .control-dock { gap:7px; }.dock-button.jelly-button { min-height:40px; padding:0 10px; font-size:9px; flex:0 1 auto; }
+  #calibrate > span, #markers > span, #sound > span, #restart > span, #help > span:last-child { display:none; }
+  #calibrate, #markers, #sound { flex:0 1 auto; }.echo-button, .stop-button { flex:0 1 auto; }
+  .performance-status { gap:6px; margin-bottom:10px; }.performance-guide { margin-bottom:7px; }
+  .performance-guide p { font-size:9px; }.hand-status { padding:4px 7px; font-size:8px; }
+  .start-button.jelly-button { min-width:224px; min-height:67px; padding-left:27px; }
+}
+@media(max-height:600px) {
+  .score-panel { top:105px; width:194px; right:14px; }.score-card.jelly-button { padding:10px; }
+  #score { height:123px; }#note-name { font-size:22px; }.pitch-readout { margin-top:7px; }
+  .score-panel.is-expanded { top:70px; }.score-panel.is-expanded #score { height:62vh; }
+  .performance-guide { display:none; }.performance-status { margin-bottom:9px; }
+  .bottom-bar { bottom:10px; }.dock-button.jelly-button { min-height:35px; }.control-dock { gap:7px; }
+}
+@media(prefers-reduced-motion:reduce) { .jelly-button { animation:none !important; transition:none !important; }.jelly-button:hover,.jelly-button:active { transform:none; } }

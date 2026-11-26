@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="theme-color" content="#632b21" />
+    <meta name="description" content="왼손으로 걷고 연기하는 목각인형, 오른손으로 별 노래를 지휘하는 작은 극장." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>PUPPET SHOW — A little theatre in your hands.</title>
+  </head>
+  <body data-example="11">
+    <div class="stage-backwall" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+    <video id="camera" autoplay muted playsinline aria-label="방 배경을 가린 좌우 반전 얼굴과 양손 영상"></video>
+    <svg class="glass-hall" viewBox="0 0 1440 1000" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <clipPath id="glass-camera-opening" clipPathUnits="objectBoundingBox"><path d="M.12 .86V.38C.12 .055 .88 .055 .88 .38V.86Z"/></clipPath>
+        <linearGradient id="hall-glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a4b5b8" stop-opacity=".08"/><stop offset=".42" stop-color="#e9d6a3" stop-opacity=".03"/><stop offset="1" stop-color="#536a70" stop-opacity=".13"/></linearGradient>
+        <linearGradient id="hall-metal"><stop stop-color="#322b22"/><stop offset=".35" stop-color="#bba272"/><stop offset=".58" stop-color="#746047"/><stop offset="1" stop-color="#32291f"/></linearGradient>
+        <radialGradient id="pendant-glow"><stop stop-color="#ffedbc" stop-opacity=".4"/><stop offset="1" stop-color="#ffdc9b" stop-opacity="0"/></radialGradient>
+      </defs>
+      <path class="hall-opening" d="M173 860V380C173 55 1267 55 1267 380V860Z" fill="url(#hall-glass)" stroke="url(#hall-metal)" stroke-width="14"/>
+      <path d="M183 860V380C183 69 1257 69 1257 380V860" fill="none" stroke="#b49b6d88" stroke-width="2"/>
+      <g clip-path="url(#glass-pane-clip)" fill="none" stroke="url(#hall-metal)" stroke-width="6">
+        <defs><clipPath id="glass-pane-clip"><path d="M179 860V380C179 62 1261 62 1261 380V860Z"/></clipPath></defs>
+        <path d="M338 170v690M527 120v740M720 100v760M913 120v740M1102 170v690M175 380h1090M175 545h1090M175 710h1090M720 380 275 190M720 380 470 100M720 380 975 100M720 380 1165 190"/>
+        <path d="M190 395q74 126 148 0 95 126 189 0 96 126 193 0 97 126 193 0 95 126 189 0 78 126 156 0" stroke-width="2.5" opacity=".75"/>
+      </g>
+      <g class="hall-pendants" stroke="#302822" stroke-width="2">
+        <path d="M376 130v218M610 90v225M840 90v225M1074 130v218"/>
+        <g fill="url(#pendant-glow)" stroke="none"><ellipse cx="376" cy="359" rx="54" ry="63"/><ellipse cx="610" cy="326" rx="54" ry="63"/><ellipse cx="840" cy="326" rx="54" ry="63"/><ellipse cx="1074" cy="359" rx="54" ry="63"/></g>
+        <g fill="#eedbb2" stroke="#ac956c" stroke-width="1"><path d="M366 348h20l5 21h-30Z"/><path d="M600 315h20l5 21h-30Z"/><path d="M830 315h20l5 21h-30Z"/><path d="M1064 348h20l5 21h-30Z"/></g>
+      </g>
+    </svg>
+    <div class="stage-wash" aria-hidden="true"></div>
+    <div class="theatre-floor" aria-hidden="true"></div>
+    <div class="curtains" aria-hidden="true">
+      <div class="curtain curtain-left" id="curtain-left"></div>
+      <div class="curtain curtain-right" id="curtain-right"></div>
+      <div class="curtain-spot"></div>
+      <div class="side-drape drape-left"></div><div class="side-drape drape-right"></div>
+      <svg class="pelmet" viewBox="0 0 1600 180" preserveAspectRatio="none">
+        <defs><linearGradient id="swag-brown" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4a241d"/><stop offset=".65" stop-color="#7a382a"/><stop offset="1" stop-color="#5f2b22"/></linearGradient></defs>
+        <path fill="url(#swag-brown)" d="M0 0H1600V58Q1200 120 800 91Q400 120 0 58Z"/>
+        <path fill="none" stroke="#bc7b6330" stroke-width="2" d="M0 45Q400 106 800 78Q1200 106 1600 45"/>
+      </svg>
+    </div>
+    <canvas id="stage" aria-label="다섯 손가락의 실로 움직이는 목각 가수와 지휘봉"></canvas>
+    <div class="proscenium" aria-hidden="true"></div>
+    <canvas id="left-hand-tool" class="hand-tool" aria-label="왼손 영상과 목각 조종대" hidden></canvas>
+    <canvas id="right-hand-tool" class="hand-tool" aria-label="오른손 영상과 장식 지휘봉" hidden></canvas>
+
+    <header class="topbar">
+      <a class="theatre-mark" href="/example-11/"><span class="mark-lines" aria-hidden="true">Ⅱ</span> THE LITTLE THEATRE <span class="edition">ACT 11</span></a>
+      <nav class="example-switcher" aria-label="예제 선택">
+        <a href="/example-8/"><span>08</span> WaterTouch</a>
+        <a href="/example-9/"><span>09</span> magic</a>
+        <a href="/example-10/"><span>10</span> Jelly Black Hole</a>
+        <a href="/example-11/" aria-current="page"><span>11</span> PUPPET SHOW</a>
+        <a href="/example-12/"><span>12</span> 고무 인간</a>
+        <a href="/example-13/"><span>13</span> 마스크</a>
+        <a href="/example-14/"><span>14</span> DDR MACHINE</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="welcome" class="sign-drop" aria-labelledby="title">
+        <div class="hanging-sign">
+          <span class="rope rope-left" aria-hidden="true"></span><span class="rope rope-right" aria-hidden="true"></span>
+          <span class="board-pin pin-left" aria-hidden="true"></span><span class="board-pin pin-right" aria-hidden="true"></span>
+          <h1 id="title">PUPPET SHOW</h1>
+          <svg class="sign-flourish" viewBox="0 0 180 24" aria-hidden="true"><path d="M10 12h44c15 0 23-7 36-7s21 7 36 7h44M26 17h29c17 0 22 5 35 5s18-5 35-5h29M84 12l6-6 6 6-6 6z"/></svg>
+          <span class="sign-rosette rosette-left" aria-hidden="true">✦</span><span class="sign-rosette rosette-right" aria-hidden="true">✦</span>
+        </div>
+      </section>
+      <div class="opening-action" id="opening-action"><button id="start" type="button" class="start-button film-button"><svg class="film-strip" viewBox="0 0 320 96" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="film-red" x2="0" y2="1"><stop stop-color="#a94436"/><stop offset=".5" stop-color="#69212c"/><stop offset="1" stop-color="#ac4936"/></linearGradient><mask id="film-perforation"><rect width="320" height="96" rx="3" fill="white"/><g fill="black"><rect x="10" y="5" width="8" height="8" rx="1.2"/><rect x="10" y="83" width="8" height="8" rx="1.2"/><rect x="28" y="5" width="8" height="8" rx="1.2"/><rect x="28" y="83" width="8" height="8" rx="1.2"/><rect x="46" y="5" width="8" height="8" rx="1.2"/><rect x="46" y="83" width="8" height="8" rx="1.2"/><rect x="64" y="5" width="8" height="8" rx="1.2"/><rect x="64" y="83" width="8" height="8" rx="1.2"/><rect x="82" y="5" width="8" height="8" rx="1.2"/><rect x="82" y="83" width="8" height="8" rx="1.2"/><rect x="100" y="5" width="8" height="8" rx="1.2"/><rect x="100" y="83" width="8" height="8" rx="1.2"/><rect x="118" y="5" width="8" height="8" rx="1.2"/><rect x="118" y="83" width="8" height="8" rx="1.2"/><rect x="136" y="5" width="8" height="8" rx="1.2"/><rect x="136" y="83" width="8" height="8" rx="1.2"/><rect x="154" y="5" width="8" height="8" rx="1.2"/><rect x="154" y="83" width="8" height="8" rx="1.2"/><rect x="172" y="5" width="8" height="8" rx="1.2"/><rect x="172" y="83" width="8" height="8" rx="1.2"/><rect x="190" y="5" width="8" height="8" rx="1.2"/><rect x="190" y="83" width="8" height="8" rx="1.2"/><rect x="208" y="5" width="8" height="8" rx="1.2"/><rect x="208" y="83" width="8" height="8" rx="1.2"/><rect x="226" y="5" width="8" height="8" rx="1.2"/><rect x="226" y="83" width="8" height="8" rx="1.2"/><rect x="244" y="5" width="8" height="8" rx="1.2"/><rect x="244" y="83" width="8" height="8" rx="1.2"/><rect x="262" y="5" width="8" height="8" rx="1.2"/><rect x="262" y="83" width="8" height="8" rx="1.2"/><rect x="280" y="5" width="8" height="8" rx="1.2"/><rect x="280" y="83" width="8" height="8" rx="1.2"/><rect x="298" y="5" width="8" height="8" rx="1.2"/><rect x="298" y="83" width="8" height="8" rx="1.2"/></g></mask></defs><g mask="url(#film-perforation)"><rect width="320" height="96" rx="3" fill="url(#film-red)"/><rect x="9" y="18" width="302" height="60" rx="1" fill="#2f161bd9" stroke="#d7a55b80"/><path d="M258 18v60M4 1h312M4 95h312" stroke="#dda96988" fill="none"/></g></svg><span class="start-copy"><span class="start-ticket-label" aria-hidden="true">ADMIT ONE</span><span id="start-label">공연 시작</span></span><span class="ticket-medallion" aria-hidden="true"><svg viewBox="0 0 28 28"><circle cx="14" cy="14" r="11"/><path class="ticket-play" d="m11 9 8 5-8 5V9Z"/></svg></span></button>
+        <p id="error" class="error" role="alert" hidden></p>
+      </div>
+    </main>
+
+    <section id="viewing-guide" class="viewing-guide" role="dialog" aria-modal="true" aria-labelledby="guide-title" hidden>
+      <div class="invitation-scene lace-programme">
+        <div class="leaflet invitation-card">
+        <button id="guide-cancel" class="leaflet-close" type="button" aria-label="공연 안내 닫기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
+        <div class="programme-header">
+          <p class="programme-edition">THE LITTLE THEATRE <span>PROGRAMME Nº 11</span></p>
+          <p class="invitation-salutation">You’re invited</p>
+          <p class="programme-title">PUPPET SHOW</p>
+          <svg class="programme-ornament" viewBox="0 0 240 24" aria-hidden="true"><path d="M8 12h65q18 0 23-7t24 7q19-14 24-7t23 7h65M42 17h40q16 0 19 4m38 0q3-4 19-4h40"/><path d="m114 12 6-6 6 6-6 6z"/></svg>
+          <h2 id="guide-title">공연 전 관람 안내</h2>
+        </div>
+        <div class="leaflet-content">
+          <p class="programme-song">Twinkle, Twinkle, Little Star <span>A MARIONETTE MUSICAL</span></p>
+          <p class="leaflet-intro">두 손으로 완성하는 오늘의 작은 인형극.<br/>손바닥과 손끝이 보이도록 양손을 들어 주세요.</p>
+          <ol class="leaflet-directions">
+            <li><span class="direction-number">01</span><div><span class="direction-label">왼손 · MOVE &amp; POSE</span><h3>왼손으로 인형을 조종해요.</h3><p>손을 좌우로 움직이면 걷고,<br/>손끝을 굽히면 팔·고개·몸짓이 바뀌어요.</p></div></li>
+            <li><span class="direction-number">02</span><div><span class="direction-label">오른손 · CONDUCT &amp; SING</span><h3>오른손으로 노래를 지휘해요.</h3><p>지휘봉을 좌우로 흔들면 노래하고,<br/>멈추면 그 자리에서 잠시 쉬어요.</p></div></li>
+            <li><span class="direction-number">03</span><div><span class="direction-label">오른손 위아래 · VOLUME</span><h3>손 높이로 목소리를 조절해요.</h3><p>위로 올리면 크게, 내리면 작게 불러요.<br/>음정과 반주 속도는 그대로예요.</p></div></li>
+          </ol>
+          <p class="leaflet-note">카메라 영상은 기기 안에서만 처리하며 녹화하지 않아요.<br/>공연 중 <span>?</span> 버튼으로 이 안내를 다시 펼칠 수 있어요.</p>
+
+        </div>
+          <div class="leaflet-actions"><span>상연 시간 약 34초<br/><small>지휘를 멈추면 잠시 쉬어 갑니다.</small></span><button id="guide-enter" type="button">공연 시작 <span aria-hidden="true">↗</span></button></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="ending-screen" class="ending-screen" role="dialog" aria-modal="true" aria-labelledby="ending-title" hidden>
+      <div class="ending-card">
+        <p class="ending-kicker">THE LITTLE THEATRE PRESENTS</p>
+        <div class="ending-heart">
+          <svg viewBox="0 0 600 530" aria-hidden="true"><defs><radialGradient id="heart-light"><stop stop-color="#e7d6bc" stop-opacity=".23"/><stop offset="1" stop-color="#e7d6bc" stop-opacity=".04"/></radialGradient><path id="heart-outline" d="M300 467C260 438 61 310 54 183C46 53 204 17 300 124C396 17 554 53 546 183C539 310 340 438 300 467Z"/></defs><use href="#heart-outline" fill="url(#heart-light)" stroke="#eee2cc" stroke-width="19" stroke-linejoin="round"/><use href="#heart-outline" fill="none" stroke="#fff4e0" stroke-width="34" stroke-dasharray=".1 13" stroke-linecap="round"/><use href="#heart-outline" fill="none" stroke="#9d8d76" stroke-opacity=".5" stroke-width="6" stroke-dasharray=".1 14" stroke-linecap="round"/></svg>
+          <h2 id="ending-title">The End</h2>
+          <span class="ending-signature">PUPPET SHOW · ACT 11</span>
+        </div>
+        <p class="ending-thanks">오늘의 작은 공연을 함께 만들어 주셔서 고마워요.</p>
+        <div class="ending-actions"><button id="encore" type="button">다시 공연 <span aria-hidden="true">↻</span></button><button id="ending-home" type="button">처음으로 <span aria-hidden="true">↗</span></button></div>
+      </div>
+    </section>
+
+    <aside id="score-panel" class="score-panel" hidden>
+      <button id="score-toggle" class="score-card theatre-button" type="button" aria-expanded="false" aria-label="실제 멜로디 악보 확대">
+        <span class="score-heading"><span>TWINKLE, TWINKLE, LITTLE STAR</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg></span>
+        <span class="pitch-readout"><span id="note-name">C4</span><span id="frequency">지휘봉을 좌우로 흔들어 주세요</span></span>
+        <canvas id="score" aria-hidden="true"></canvas>
+        <span class="clip-progress"><progress id="clip-progress" max="34.286" value="0" aria-label="노래 진행"></progress><span id="clip-time">0:00 / 0:34</span></span>
+        <span class="score-footer"><span id="syllable">Twin</span><span id="score-size-label">눌러서 확대 ↗</span></span>
+      </button>
+    </aside>
+
+    <footer id="controls" class="bottom-bar" hidden>
+      <div class="performance-guide"><span class="live-dot" aria-hidden="true"></span><p id="guide" role="status">커튼이 열리고 있어요.</p></div>
+      <div class="performance-status" aria-label="손 인식과 목소리 크기">
+        <span id="left-status" class="hand-status">왼손 · 인형 조종 <span>대기</span></span><span id="right-status" class="hand-status">오른손 · 노래 지휘 <span>대기</span></span>
+        <label class="voice-volume">목소리 <meter id="voice-volume" min="0" max="1" value=".6" aria-label="보컬 볼륨"></meter><span id="volume-value">60%</span></label>
+      </div>
+      <div class="control-dock" aria-label="공연 조작">
+        <div class="dock-primary">
+          <button id="echo" type="button" class="dock-button theatre-button echo-button" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"/></svg><span>노래 에코</span><span id="echo-state" class="control-state">켜짐</span></button>
+          <button id="sound" type="button" class="dock-button theatre-button" aria-pressed="true" title="공연 소리"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m11 4-5 4H3v8h3l5 4V4Zm4 4a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg><span id="sound-label">소리 켜짐</span></button>
+          <button id="restart" type="button" class="dock-button theatre-button" title="노래 처음부터"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6M4 3v6h6"/></svg><span>노래 다시</span></button>
+          <button id="help" type="button" class="dock-button theatre-button" title="관람 안내 다시 보기"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 1 1 5 2c-1 1-2 1-2 3m0 3v.1"/></svg><span>공연 안내</span></button>
+          <button id="stop" type="button" class="dock-button theatre-button stop-button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v18H7zM3 3h18M3 21h18"/></svg><span>막 내리기</span></button>
+          <details class="dock-settings"><summary><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></svg>조종 설정</summary><div class="settings-menu">
+            <button id="calibrate" type="button" class="dock-button theatre-button" title="현재 손 자세에 인형 줄 맞춤"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1.4 7M4 4v6h6"/></svg><span>인형 줄 맞춤</span></button>
+            <button id="markers" type="button" class="dock-button theatre-button" aria-pressed="false" title="손 관절 표시"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20V7a2 2 0 0 1 4 0v5V4a2 2 0 0 1 4 0v9V7a2 2 0 0 1 4 0v7c0 4-2 7-6 7-3 0-5-2-7-4l-3-4a2 2 0 0 1 3-2l3 3"/></svg><span>손 관절 보기</span></button>
+          </div></details>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

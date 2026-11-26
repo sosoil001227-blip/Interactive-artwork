@@ -1,0 +1,25 @@
+/* Hand-carved miniature theatre marquee, with the existing drop/lift animation. */
+.sign-drop { top:27%; width:min(600px,calc(100% - 64px)); }
+.hanging-sign {
+  isolation:isolate; padding:46px 28px 27px; border:7px solid #354443;
+  border-radius:37px 37px 13px 13px;
+  background:linear-gradient(165deg,#a98d86e8,#977a73e8),url('./assets/aged-oak-v2.jpg') center/cover;
+  box-shadow:0 19px 34px #1e141347,0 2px 0 2px #b4a18a,inset 0 0 0 2px #c5b298,inset 0 4px 8px #ead8c735,inset 0 -5px 9px #422d2d38;
+}
+.hanging-sign::before { content:''; position:absolute; z-index:-1; inset:11px; border:1px solid #e0c9af80; border-radius:21px 21px 4px 4px; pointer-events:none; }
+.hanging-sign::after { inset:3px; border-radius:27px 27px 5px 5px; background:linear-gradient(90deg,#44313416,transparent 17% 83%,#44313416); }
+#title { position:relative; z-index:1; margin:0; font-family:'Rye','Rye Local',Georgia,serif; font-size:64px; line-height:1.12; letter-spacing:.3px; color:#f3e5cc; white-space:nowrap; text-shadow:0 1px 0 #fff2d9,0 2px 0 #60433b,0 3px 0 #60433b,1px 4px 0 #4c342f,0 6px 7px #2b1e2255; }
+.sign-flourish { display:block; position:relative; z-index:1; width:118px; height:19px; margin:15px auto 0; fill:none; stroke:#ead7b7a6; stroke-width:1; stroke-linecap:round; }
+.sign-rosette { position:absolute; top:50%; margin-top:-9px; color:#d6c09c; font:13px Georgia,serif; text-shadow:0 1px #402c2c80; }
+.rosette-left { left:13px; }.rosette-right { right:13px; }
+.board-pin { top:8px; background:#332722; box-shadow:inset 0 1px 3px #170f0e,0 1px #dbc4a5a0; }
+.rope { filter:saturate(.38); }
+.opening-action { bottom:23%; }
+.start-button { min-width:236px; min-height:68px; padding:8px 10px 8px 28px; gap:29px; border:1px solid #fff4debf; border-radius:999px; background:linear-gradient(#f4eddf,#d4c9b8); color:#3d3830; box-shadow:0 3px 0 #796b5b,0 10px 25px #22191445,inset 0 1px 1px #fffcf5,inset 0 -2px 2px #9e927c55; backdrop-filter:none; transition:transform .22s,box-shadow .22s,filter .22s; }
+#start-label { flex:1; font:800 20px/1.2 SUIT,sans-serif; letter-spacing:1px; text-shadow:0 1px #fffaf0a6; white-space:nowrap; }
+.ticket-medallion { display:grid; place-items:center; flex:0 0 46px; width:46px; height:46px; border:1px solid #a99e8b; border-radius:50%; background:linear-gradient(#b7b7a8,#ded8c7); box-shadow:inset 0 2px 3px #504d3c33,0 1px #fff9e5c9; color:#4a5751; }
+.start-button .ticket-medallion svg { width:26px; height:26px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linejoin:round; stroke-linecap:round; }
+.start-button:hover { background:linear-gradient(#fff9eb,#e5d9c4); transform:translateY(-2px) scale(1.025); box-shadow:0 4px 0 #796b5b,0 13px 28px #22191445,inset 0 1px #fffdf6; }
+.start-button:active { transform:translateY(1px); box-shadow:0 1px 0 #796b5b,0 5px 13px #22191438; }
+.start-button:disabled { transform:none; filter:saturate(.5); }
+

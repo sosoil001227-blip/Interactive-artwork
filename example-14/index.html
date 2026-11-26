@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#080d26">
+    <meta name="description" content="웹캠으로 발과 몸의 움직임을 읽어, 복고 댄스 무대의 빛과 방향 타일을 깨우는 인터랙티브 미디어 아트.">
+    <title>DDR MACHINE · Example 14</title>
+  </head>
+  <body>
+    <div class="exhibit">
+      <header class="topbar">
+        <span class="series" lang="en">INTERACTIVE ARTWORK</span>
+        <nav class="examples" aria-label="예제 선택">
+          <a href="/example-8/" aria-label="8 WaterTouch">08</a>
+          <a href="/example-9/" aria-label="9 magic">09</a>
+          <a href="/example-10/" aria-label="10 Jelly Black Hole">10</a>
+          <a href="/example-11/" aria-label="11 PUPPET SHOW">11</a>
+          <a href="/example-12/" aria-label="12 고무 인간">12</a>
+          <a href="/example-13/" aria-label="13 masks">13</a>
+          <a href="/example-14/" aria-current="page" aria-label="14 DDR MACHINE">14 <span>DDR MACHINE</span></a>
+        </nav>
+      </header>
+      <main class="installation">
+        <section class="cabinet" id="cabinet" aria-labelledby="title">
+          <div class="broadcast-header">
+            <header class="marquee">
+              <h1 id="title" lang="en">DDR <span>MACHINE</span></h1>
+            </header>
+            <div class="control-deck">
+              <div class="actions">
+                <button class="primary" id="camera-toggle" type="button">카메라 켜기</button>
+                <button id="demo-toggle" type="button">체험 시연</button>
+                <div id="mode-picker" class="mode-picker" role="group" aria-label="참가 인원" hidden>
+                  <button type="button" data-count="1" aria-pressed="true">1인</button>
+                  <button type="button" data-count="2" aria-pressed="false">2인</button>
+                </div>
+                <button class="primary" id="choose" type="button" hidden>캐릭터 선택 →</button>
+                <button id="back" type="button" hidden>뒤로</button>
+                <button id="reset" type="button" hidden>발 위치 다시 맞추기</button>
+              </div>
+            </div>
+          </div>
+          <div class="broadcast">
+            <div class="stage-stack">
+              <figure class="work">
+                <div class="channel">
+                  <h2>DDR 무대</h2>
+                </div>
+                <div class="stage" id="stage" data-screen="home">
+                  <img class="arena-art" src="./src/assets/neon-arena.webp" alt="" width="1600" height="900" fetchpriority="high">
+                  <canvas id="surface" aria-label="모션 캡처 댄서와 게임 판정"></canvas>
+                  <header class="arena-banner" id="arena-banner" hidden>
+                    <span id="arena-mode">1P MODE</span>
+                    <div class="track-badge"><small>CHROME STEPS</small><strong id="arena-status">READY</strong></div>
+                    <div class="beat-lamps" id="beat-lamps" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                  </header>
+                  <div id="scoreboard" class="scoreboard" hidden></div>
+                  <section class="disc-deck" id="cd-player" aria-label="CD 플레이어" hidden>
+                    <div class="cd-disc" aria-hidden="true"><i></i></div>
+                    <div class="cd-display">
+                      <div class="cd-track"><strong>CHROME STEPS</strong><small>120 BPM</small></div>
+                      <div class="cd-meta"><span id="disc-state">READY</span><time id="disc-time">0:00 / 0:29</time></div>
+                      <div class="cd-meter">
+                        <progress id="disc-progress" value="0" aria-label="곡 재생 위치"></progress>
+                        <div class="cd-spectrum" id="disc-spectrum" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="disc-controls">
+                      <button class="cd-play" type="button" id="start-round" hidden>▶ 게임 시작</button>
+                      <button class="cd-play cd-stop" type="button" id="stop-round" hidden>■ 중지</button>
+                      <div class="cd-audio">
+                        <button class="cd-mute" type="button" id="mute" aria-label="음소거" aria-pressed="false" title="음소거"></button>
+                        <label class="volume"><span>볼륨</span><input id="volume" type="range" min="0" max="100" value="68"></label>
+                      </div>
+                    </div>
+                  </section>
+                  <div id="entry" class="entry" role="status" hidden>
+                    <img src="./src/assets/cabinet.webp" alt="DDR MACHINE" width="1200" height="1200">
+                    <span>무대 입장</span>
+                  </div>
+                </div>
+                <figcaption class="caption" id="hint" role="status"></figcaption>
+              </figure>
+            </div>
+            <div class="field-stack">
+              <section class="field" id="field" data-state="standby" aria-labelledby="field-title">
+                <header class="channel">
+                  <h2 id="field-title">현실 공간</h2>
+                  <span id="field-status">대기</span>
+                </header>
+                <div class="field-frame">
+                  <video id="camera" muted playsinline aria-hidden="true"></video>
+                  <canvas id="field-surface" aria-label="발 위치 안내, 조준점과 모션 효과" hidden></canvas>
+                  <div class="field-standby" id="field-standby">
+                    <p id="field-message">카메라를 켜면 이곳에 실제 공간이 보여요.</p>
+                  </div>
+                </div>
+                <div class="foot-readouts" id="foot-readouts" aria-label="플레이어별 발 인식" hidden></div>
+                <footer class="field-controls" id="field-controls" hidden>
+                  <span>손목·마우스로 조준하고 손 휘두르기</span>
+                  <button id="field-toggle" type="button" aria-pressed="false">캐릭터 스타일</button>
+                </footer>
+                <aside id="selection" class="selection" aria-labelledby="selection-title" hidden>
+                  <h2 id="selection-title">네온 댄서</h2>
+                  <div class="player-pick" id="player-pick" role="group" aria-label="캐릭터를 선택할 플레이어" hidden>
+                    <button type="button" data-slot="0" aria-pressed="true">P1</button>
+                    <button type="button" data-slot="1" aria-pressed="false">P2</button>
+                  </div>
+                  <div class="roster" id="roster" role="group" aria-label="캐릭터"></div>
+                  <button class="launch" type="button" id="enter-arena">무대로 이동 <span aria-hidden="true">→</span></button>
+                </aside>
+              </section>
+            </div>
+          </div>
+          <div class="cabinet-pad" aria-hidden="true">
+            <span data-direction="left">←</span><span data-direction="up">↑</span>
+            <span data-direction="down">↓</span><span data-direction="right">→</span>
+          </div>
+        </section>
+        <p id="permission" class="permission" role="status" hidden>브라우저에서 카메라 사용을 허용해 주세요.</p>
+        <p id="error" class="error" role="alert" hidden></p>
+        <section class="guide" aria-labelledby="guide-title">
+          <h2 id="guide-title">사용 방법</h2>
+          <ol>
+            <li><strong>머리부터 발끝까지 보여 주기</strong><span>발아래 바닥도 조금 보이게 서 주세요.</span></li>
+            <li><strong>캐릭터 고르기</strong><span>2인은 화면의 왼쪽과 오른쪽에 각각 서 주세요.</span></li>
+            <li><strong>박자에 맞춰 발 내딛기</strong><span>←·→는 양옆, ↑는 뒤, ↓는 카메라 쪽으로 움직여요.</span></li>
+          </ol>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

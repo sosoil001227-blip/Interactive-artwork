@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07130f" />
+    <meta name="description" content="두 손 사이에서 피어나는 마법. 손바닥을 마주 보고, 펼치고, 앞으로 보내 보세요." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>magic — In your hands.</title>
+  </head>
+  <body data-example="9">
+    <video id="camera" autoplay playsinline muted aria-label="좌우 반전된 실시간 카메라 화면"></video>
+    <div class="camera-shade" aria-hidden="true"></div>
+    <canvas id="field" aria-label="양손 사이에 생성되고 손짓에 따라 앞으로 뻗어나가는 마법진"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <nav class="example-switcher" aria-label="예제 선택">
+        <a href="/example-8/"><span>08</span> WaterTouch</a>
+        <a href="/example-9/" aria-current="page"><span>09</span> magic</a>
+        <a href="/example-10/"><span>10</span> Jelly Black Hole</a>
+        <a href="/example-11/"><span>11</span> PUPPET SHOW</a>
+        <a href="/example-12/"><span>12</span> 고무 인간</a>
+        <a href="/example-13/"><span>13</span> 마스크</a>
+        <a href="/example-14/"><span>14</span> DDR MACHINE</a>
+      </nav>
+      <a id="archive-link" class="archive-link" href="http://localhost:5173/archive/works/">INDEX <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section id="welcome" class="welcome" aria-labelledby="title">
+        <h1 id="title">A little magic.<br /><em>In your hands.</em></h1>
+        <p class="intro">마주한 두 손 사이, 빛이 깨어나요.<br />손을 펼쳐 당신만의 마법을 만들어 보세요.</p>
+        <button id="start" class="start-button" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="12" height="12" rx="3"/><path d="m15 10 6-3v10l-6-3"/></svg><span>카메라 켜고 시작하기</span><span aria-hidden="true">↗</span></button>
+        <p class="privacy">카메라 영상은 이 기기 안에서만 처리돼요.</p>
+        <p id="error" class="error" role="alert" hidden></p>
+      </section>
+    </main>
+
+    <footer class="bottom-bar" aria-label="마법 동작 안내 및 카메라 조작">
+      <div id="live-guide" class="live-guide" hidden>
+        <span id="current-step" class="phase-label" aria-hidden="true">1 모으기</span>
+        <p id="guide-text" role="status">두 손바닥을 서로 마주 보게 해 주세요.</p>
+        <div class="dwell-track"><span id="dwell-fill"></span></div>
+      </div>
+      <div class="control-dock">
+        <button id="reset" class="dock-button" type="button" aria-label="마법진 다시 시작" title="마법진 다시 시작">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1.4 7M4 4v6h6"/></svg>
+        </button>
+        <button id="settings-toggle" class="dock-button" type="button" aria-expanded="false" aria-controls="controls-panel">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></svg><span>설정</span>
+        </button>
+        <button id="stop" class="dock-button stop-control" type="button" aria-label="카메라 끄기" title="카메라 끄기" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2 2 20 20M16 12V8a2 2 0 0 0-2-2H8M4 6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1M16 10l6-3v10l-6-3"/></svg><span>종료</span>
+        </button>
+        <section id="controls-panel" class="settings-panel" aria-labelledby="settings-title" hidden>
+          <div class="settings-header">
+            <h2 id="settings-title">마법진 설정</h2>
+            <button id="settings-close" class="settings-close" type="button" aria-label="설정 닫기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+          </div>
+          <div class="settings-options">
+            <button id="sound" class="control-button toggle-control" type="button" aria-label="마법진 소리" aria-pressed="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4 6 8H3v8h3l5 4V4Z"/><path d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></svg>
+              <span>소리</span><span class="control-state">켜짐</span><span class="toggle-indicator" aria-hidden="true"></span>
+            </button>
+            <button id="markers" class="control-button toggle-control" type="button" aria-label="손 추적 표시" aria-pressed="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 12V7a2 2 0 0 1 4 0v5-7a2 2 0 0 1 4 0v7-5a2 2 0 0 1 4 0v7c0 5-2.5 8-7 8-2.5 0-4-1.4-5.5-3.5L3 13a2 2 0 0 1 3-2l3 3"/></svg>
+              <span>손 표시</span><span class="control-state">켜짐</span><span class="toggle-indicator" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="tracking-status">
+            <span class="status-line"><i id="status-dot" aria-hidden="true"></i><span id="status" role="status">카메라 대기 중</span></span>
+            <span class="tracking-counts">손 <b id="hand-count">0</b>/2 <span aria-hidden="true">·</span> 손끝 <b id="finger-count">0</b>/10</span>
+          </div>
+          <ol class="steps" aria-label="마법 사용 단계">
+            <li id="step-gather" class="current" aria-current="step"><span class="step-number">1</span><span>모으기</span></li>
+            <li id="step-grow"><span class="step-number">2</span><span>펼치기</span></li>
+            <li id="step-cast"><span class="step-number">3</span><span>발사</span></li>
+          </ol>
+        </section>
+      </div>
+    </footer>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
